@@ -6,61 +6,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Document</title>
+    <title>Decisive</title>
 </head>
 
 <body>
     <header>
-        <h1>Decisive</h1>
+        <h1>Decisive (also header/question for each page)</h1>
             <p>the app that decides for you</p>
     </header>
 
-    <banner>Should I go out?</banner>
-    <button>FIND OUT</button>
+    <main>
+        <section class="landing-page">
+            <p>Should I go out?</p>
+            <button>FIND OUT</button>
+        </section>
 
-    <section class="question-mindset">
-        <h2>Which best describes your current mindset?</h2>
-        <p>
-            <h3>Insecure</h3>
-            <p>I want to go out, but maybe I shouldn't</p>
-        </p>
+        <section class="question-mindset">
+            <!-- <h1>Which best describes your current mindset?</h1> -->
+            <section class="mindset-block">
+                <h2 id="ins-head">Insecure</h2>
+                <p id="ins-para">I want to go out, but maybe I shouldn't</p>
+            </section>
 
-        <p>
-            <h3>On a guilt trip</h3>
-            <p>I don't want to go out, but maybe I should</p>
-        </p>
+            <section class="mindset-block">
+                <h2 id="guilt-head">On a guilt trip</h2>
+                <p id="guilt-para">I don't want to go out, but maybe I should</p>
+            </section>
 
-        <p>
-            <h3>Defiant</h3>
-            <p>I SHOULD go out - prove me wrong</p>
-        </p>
+            <section class="mindset-block">
+                <h2 id="def-head">Defiant</h2>
+                <p id="def-para"> I SHOULD go out - prove me wrong</p>
+            </section>
 
-        <p>
-            <h3>Introverted</h3>
-            <p>I don't want to go out</p>
-        </p>
-    </section>
+            <section class="mindset-block">
+                <h2 id="intr-head">Introverted</h2>
+                <p id="intr-para">I don't want to go out</p>
+            </section>
+        </section>
 
-    <section class="question-input">
-        <form>
-            <input type="text" placeholder="e.g. 123 Main Street, Minneapolis, MN">
-            <button type="submit">Submit</button>
-        </form>
-    </section>
+        <section class="location-question">
+            <!-- <h1>What is your current location?</h1> -->
+            <form>
+                <p>
+                    <input type="text" placeholder="e.g. 123 Main Street, Minneapolis, MN">
+                </p>
+                <p>
+                    <button type="submit">Submit</button>
+                </p>
+            </form>
+        </section>
 
-    <section class="answer">
-        <h2>Should I go out?</h2>
-        <p>NO, YOU SHOULD NOT GO OUT</p>
-        <button>FIND OUT WHY</button>
-    </section>
+        <section class="destination-question">
+            <!-- <h1>Where are you planning on going/supposed to go?</h1> -->
+            <form>
+                <p>
+                    <input type="text" placeholder="e.g. The Best Restaurant, Minneapolis, MN">
+                </p>
+                <p>
+                    <button type="submit">Submit</button>
+                </p>
+            </form>
+        </section>
 
-    <section class="data-analysis">
-        <p>
-            Even though the weather is good, you should not go out because your 
-            destination is six hours away and you need to be there is two hours. 
-        </p>
-    </section>
-    
+        <section class="time-question">
+            <!-- <h1>What time do you need to be there?</h1> -->
+            <form>
+                <p>
+                    <input type="text" placeholder="e.g. 5 pm">
+                </p>
+                <p>
+                    <button type="submit">Submit</button>
+                </p>
+            </form>
+        </section>
+
+        <section class="answer">
+            <!-- <h1>Should I go out?</h1> -->
+            <p>NO, YOU SHOULD NOT GO OUT</p>
+            <button>FIND OUT WHY</button>
+        </section>
+
+        <section class="data-analysis">
+            <!-- <h1>Data Analysis</h1> -->
+            <p class="analysis-para">
+                Even though the weather is good, you should not go out because your 
+                destination is six hours away and you need to be there is two hours. 
+            </p>
+        </section>
+    </main>
     
 </body>
 <script src="./assets/js/script.js"></script>
