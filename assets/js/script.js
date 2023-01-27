@@ -19,6 +19,8 @@ let whyButtonEl = document.getElementById('why-btn');
 let dataAnalysisEl = document.getElementById('data-analysis');
 let dataTextEl = document.getElementById('data-text');
 let refreshButtonEl = document.getElementById('refresh-btn');
+let locationSubmitEl= document.getElementById('location-submit');
+let localInputEl= document.getElementById('loc-input');
 
 findOutButtonEl.addEventListener('click', mindsetPage);
 
@@ -97,12 +99,15 @@ function dataPage(event) {
 refreshButtonEl.addEventListener('click', function() {
     location.reload();
 });
+locationSubmitEl.addEventListener('click', fetchWeather);
 
 const apiKey = '2b53fe9e9a97281c32a772fc33b1d0b7';
 const city ='Atlanta'
 
 const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=2b53fe9e9a97281c32a772fc33b1d0b7`;
-
+function fetchWeather(event){
+    event.preventDefault();
+console.log("This button is working ");
 fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -139,6 +144,8 @@ fetch(url)
 
     })
     .catch(error => console.error(error));
+
+}
 
 
 
