@@ -83,6 +83,15 @@ destinationNextEl.addEventListener('click', arriveTimePage);
 function arriveTimePage(event) {
     event.preventDefault();     
     destinationQuesEl.classList.add('hidden');
+    answerEl.classList.remove('hidden');
+    titleEl.classList.replace('text-3xl', 'text-5xl');
+    titleEl.textContent = 'Should I go out?';
+}
+
+
+/*function arriveTimePage(event) {
+    event.preventDefault();     
+    destinationQuesEl.classList.add('hidden');
     timeQuesEl.classList.remove('hidden');
     titleEl.textContent = 'What time do you need to be there?';
 }
@@ -95,7 +104,7 @@ function answerPage(event) {
     answerEl.classList.remove('hidden');
     titleEl.classList.replace('text-3xl', 'text-5xl');
     titleEl.textContent = 'Should I go out?';
-}
+}*/
 
 whyButtonEl.addEventListener('click', dataPage);
 
