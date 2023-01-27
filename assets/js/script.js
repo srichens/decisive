@@ -27,6 +27,12 @@ let locErrorEl = document.getElementById('eml');
 let destErrorEl = document.getElementById('emd');
 let destRenderEl = document.querySelector('.destination');
 
+let destination;
+let destRetrievedEl = document.getElementById('destination-retrieved');
+let destInputEl = document.getElementById('dest-input');
+let destTextEl = document.getElementById('dest-text');
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2dyaWNoZW5zIiwiYSI6ImNsZGNlZXUyazA5YjUzcHA2ejhuaTBld3YifQ.dtar1LhXriGs-PkHHHq5yg';
 
 findOutButtonEl.addEventListener('click', mindsetPage);
 
@@ -140,6 +146,49 @@ function fetchWeather(event){
    .catch(error => localWeatherEl.classList.add('hidden'), locErrorEl.innerHTML = "Please enter a valid location");
     localInputEl.value = "";   
 };
+
+destInputEl.addEventListener('submit', formSubmitCity)
+  
+function formSubmitCity (event) {
+    event.preventDefault();
+    console.log("Destination button is working");
+    destination = destTextEl.value.trim();  
+    console.log(destination);
+    
+    let urlDest = `https://api.openweathermap.org/data/2.5/weather?q=${destination}&appid=${apiKey}`;
+  
+    fetch(urlDest)
+      .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            destRetrievedEl.classList.remove('hidden');          
+            const latitude = data.coord.lat;
+            console.log(latitude);          
+            const longitude= data.coord.lon;
+            console.log(longitude); 
+            let destLocation = document.querySelector('.destination-location');
+            destLocation.textContent = destination;
+                
+            let to = [longitude, latitude] 
+            let from = [longitude, latitude]  
+
+            let options = {
+                units: 'miles'
+            };  
+
+            let distance = turf.distance(to, from, options);
+    
+            let value = document.getElementById('map-overlay')
+            value.innerHTML = "Distance to your destination: " + distance.toFixed([2]) + " miles";
+            destErrorEl.innerHTML = "";        
+        })
+      
+    .catch(error => destRetrievedEl.classList.add('hidden'), destErrorEl.innerHTML = "Please enter a valid destination");
+      
+    destTextEl.value = ""; 
+  
+};
+
     
 
 

@@ -1,4 +1,4 @@
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2dyaWNoZW5zIiwiYSI6ImNsZGNlZXUyazA5YjUzcHA2ejhuaTBld3YifQ.dtar1LhXriGs-PkHHHq5yg';
+/*mapboxgl.accessToken = 'pk.eyJ1Ijoic2dyaWNoZW5zIiwiYSI6ImNsZGNlZXUyazA5YjUzcHA2ejhuaTBld3YifQ.dtar1LhXriGs-PkHHHq5yg';
 let destination;
 let destRetrievedEl = document.getElementById('destination-retrieved');
 let destInputEl = document.getElementById('dest-input');
@@ -49,4 +49,4 @@ function formSubmitCity (event) {
   console.log(destination);
   destRetrievedEl.classList.remove('hidden');
 
-};
+};*/
