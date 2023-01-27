@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Decisive</title>
 </head>
@@ -68,24 +69,25 @@
         </section>
 <!-- add hidden class and ID to parent element and ID to button-->
         <section id="destination-question" class="hidden destination-question border-black border-4 bg-neutral-200 m-5">
-            <!-- <h1>Where are you planning on going/supposed to go?</h1> -->
-            <form class="border-blue-700 border-2 m-5">
+            <!-- <h1>Where are you planning on going/supposed to go?</h1> -->  
+            <!-- <section id="map"></section>           
+            <section id="map-overlay" class="border-black text-blue-900"></section>  -->     
+            <form id="dest-input" class="border-blue-700 border-2 m-5">
                 <p>
-                    <input class="border-pink-700 border-2 m-5" type="text" placeholder="e.g. The Best Restaurant, Minneapolis, MN">
+                    <input id="dest-text" class="border-pink-700 border-2 m-5" type="text" placeholder="e.g. The Best Restaurant, Minneapolis, MN">
                 </p>
                 <p>
                     <button id="destination-submit" class="border-pink-700 border-2 bg-orange-700 text-white font-bold m-5" type="submit">Submit</button>
                 </p>
             </form>
-              <!-- add rendered data block that will initially be hidden-->
-            <section class="destination bg-white border-black border-dotted border-2 m-5">
-                <h2 class="destination-location bg-blue-200">[destination here]</h2>
-                <p class="distance border-pink-700 border-2 m-5">Your destination is [distance] miles from your current location.</p>
+            <section id="destination-retrieved" class="hidden destination bg-white border-black border-dotted border-2 m-5">
+                <h2 id="map" class="destination-location mt-50 bg-blue-200">[retrieved destination here]</h2>
+                <p id="map-overlay" class="distance border-pink-700 border-2 m-5">Your destination is a [retrieved distance and/or drive time] from your current location.</p>
                 <p>
-                    <button id="destination-next" class="bg-blue-900 text-white font-bold m-5" type="submit">Next</button>
+                    <button id="destination-next" class="btn bg-blue-900 text-white font-bold m-5" type="submit">Next</button>
                 </p>
             </section>
-        </section>
+        </section>      
 <!-- add hidden class and ID to parent element and ID to button-->
         <section id="time-question" class="hidden time-question border-black border-dotted border-4 bg-neutral-200 m-5">
             <!-- <h1>What time do you need to be there?</h1> -->
@@ -133,7 +135,11 @@
     integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
     crossorigin="anonymous"></script>
 
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js'></script>
+    <script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
+
     <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/distance.js"></script>
 </body>
 
 </html>
