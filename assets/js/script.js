@@ -101,6 +101,7 @@ function dataPage(event) {
 refreshButtonEl.addEventListener('click', function() {
     location.reload();
 });
+
 localFormEl.addEventListener('submit', fetchWeather);
 
 const apiKey = '2b53fe9e9a97281c32a772fc33b1d0b7';
@@ -113,45 +114,23 @@ function fetchWeather(event){
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
     fetch(url)
     .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        localWeatherEl.classList.remove('hidden');
-        const latitude = data.coord.lat;
-        console.log(latitude);
-        const longitude= data.coord.lon;
-        const description = data.weather[0].description;
-                let location = document.querySelector('.current-location');
-                location.textContent = city;
-                let message = document.querySelector('.current-weather');
-                message.textContent = `Current Weather Condition: ${description}.`;
 
-        
-
-                /*if (main === 'Clear') {
-
-                    message.textContent = 'The weather is clear.';
-                } else if (main === 'Rain') {
-                    message.textContent = 'There is a chance of rain.';
-                } else if (main === 'Snow') {
-                    message.textContent = 'There is a chance of snow.';
-                } else if (main === 'Thunderstorm') {
-                    message.textContent = 'There is a chance of thunderstorm.';
-                } else if (main === 'Windy') {
-                    message.textContent = 'It is windy.';
-                } else if (description === 'tornado') {
-                    message.textContent = 'There is a chance of tornado.';
-                } else {
-                    message.textContent = `The weather is ${description}.`;
-                }
-                console.log(message.textContent);*/
-          
-        
-
-        
-    })
+        .then(data => {
+            console.log(data);
+            localWeatherEl.classList.remove('hidden');
+            const latitude = data.coord.lat;
+            console.log(latitude);
+            const longitude= data.coord.lon;
+            console.log(longitude);
+            const description = data.weather[0].description;
+            let location = document.querySelector('.current-location');
+            location.textContent = city;
+            let message = document.querySelector('.current-weather');
+            message.textContent = `Current Weather Condition: ${description}.`;                   
+        })
     .catch(error => console.error(error));
     localInputEl.value = "";
-}
+};
     
 
 
