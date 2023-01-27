@@ -23,6 +23,10 @@ let locationSubmitEl = document.getElementById('location-submit');
 let localInputEl = document.getElementById('loc-input');
 let localFormEl = document.getElementById('loc-form');
 let localWeatherEl = document.querySelector('.location-weather');
+let locErrorEl = document.getElementById('eml');
+let destErrorEl = document.getElementById('emd');
+let destRenderEl = document.querySelector('.destination');
+
 
 findOutButtonEl.addEventListener('click', mindsetPage);
 
@@ -102,6 +106,7 @@ refreshButtonEl.addEventListener('click', function() {
     location.reload();
 });
 
+
 localFormEl.addEventListener('submit', fetchWeather);
 
 const apiKey = '2b53fe9e9a97281c32a772fc33b1d0b7';
@@ -109,14 +114,15 @@ let city;
 
 function fetchWeather(event){
     event.preventDefault();
-    console.log("This button is working ");
-    city = localInputEl.value.trim();
+    console.log("This button is working ");    
+
+    city = localInputEl.value.trim();          
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+
     fetch(url)
     .then(response => response.json())
-
-        .then(data => {
-            console.log(data);
+        .then(data => {           
+            console.log(data);            
             localWeatherEl.classList.remove('hidden');
             const latitude = data.coord.lat;
             console.log(latitude);
@@ -126,10 +132,13 @@ function fetchWeather(event){
             let location = document.querySelector('.current-location');
             location.textContent = city;
             let message = document.querySelector('.current-weather');
-            message.textContent = `Current Weather Condition: ${description}.`;                   
-        })
-    .catch(error => console.error(error));
-    localInputEl.value = "";
+            message.textContent = `Current Weather Condition: ${description}.`;     
+            fahrenheit = Math.round(((parseFloat(data.main.temp)-273.15)*1.8)+32); 
+            document.getElementById('current-temp').innerHTML = "Temp: " + fahrenheit + '\u00B0' + ' F';  
+            locErrorEl.innerHTML = "";             
+        })   
+   .catch(error => localWeatherEl.classList.add('hidden'), locErrorEl.innerHTML = "Please enter a valid location");
+    localInputEl.value = "";   
 };
     
 

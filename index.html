@@ -53,6 +53,7 @@
             <form id="loc-form" class="border-blue-700 border-2 m-5">
                 <p>
                     <input  id="loc-input" class="border-pink-700 border-2 m-5" type="text" placeholder="e.g. 123 Main Street, Minneapolis, MN">
+                    <p id="eml" class="m-5"></p>
                 </p>
                 <p>
                     <button id="location-submit" class="border-pink-700 border-2 bg-orange-700 text-white font-bold m-5" type="submit">Submit</button>
@@ -61,7 +62,8 @@
             <!-- add rendered data block that will initially be hidden-->
             <section class= "hidden location-weather bg-white border-black border-dotted border-2 m-5">
                 <h2 class="current-location bg-blue-200">[location here]</h2>
-                <p class="current-weather border-pink-700 border-2 m-5">The current weather is [condition] and [temperature]</p>
+                <p class="current-weather border-pink-700 border-2 m-5"></p>
+                <p id="current-temp" class="border-pink-700 border-2 m-5"></p>
                 <p>
                     <button id="location-next" class="bg-blue-900 text-white font-bold m-5" type="submit">Next</button>
                 </p>
@@ -75,6 +77,7 @@
             <form id="dest-input" class="border-blue-700 border-2 m-5">
                 <p>
                     <input id="dest-text" class="border-pink-700 border-2 m-5" type="text" placeholder="e.g. The Best Restaurant, Minneapolis, MN">
+                    <p id="emd" class="m-5"></p>
                 </p>
                 <p>
                     <button id="destination-submit" class="border-pink-700 border-2 bg-orange-700 text-white font-bold m-5" type="submit">Submit</button>
