@@ -19,8 +19,9 @@ let whyButtonEl = document.getElementById('why-btn');
 let dataAnalysisEl = document.getElementById('data-analysis');
 let dataTextEl = document.getElementById('data-text');
 let refreshButtonEl = document.getElementById('refresh-btn');
-let locationSubmitEl= document.getElementById('location-submit');
-let localInputEl= document.getElementById('loc-input');
+let locationSubmitEl = document.getElementById('location-submit');
+let localInputEl = document.getElementById('loc-input');
+let localFormEl = document.getElementById('loc-form');
 
 findOutButtonEl.addEventListener('click', mindsetPage);
 
@@ -99,44 +100,48 @@ function dataPage(event) {
 refreshButtonEl.addEventListener('click', function() {
     location.reload();
 });
-locationSubmitEl.addEventListener('click', fetchWeather);
+localFormEl.addEventListener('submit', fetchWeather);
 
 const apiKey = '2b53fe9e9a97281c32a772fc33b1d0b7';
-const city ='Atlanta'
+let city;
 
-const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=2b53fe9e9a97281c32a772fc33b1d0b7`;
 function fetchWeather(event){
     event.preventDefault();
 console.log("This button is working ");
+city = localInputEl.value.trim();
+const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 fetch(url)
     .then(response => response.json())
     .then(data => {
-        const latitude = data.city.coord.lat;
+        console.log(data);
+        const latitude = data.coord.lat;
         console.log(latitude);
-        const longitude= data.city.coord.lon;
+        const longitude= data.coord.lon;
         const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
         fetch(weatherUrl)
             .then(response => response.json())
             .then(data => {
                 const main = data.weather[0].main;
                 const description = data.weather[0].description;
-                let message = '';
+                let location = document.querySelector('.current-location');
+                location.textContent = city;
+                let message = document.querySelector('.current-weather');
                 if (main === 'Clear') {
-                    message = 'The weather is clear.';
+                    message.textContent = 'The weather is clear.';
                 } else if (main === 'Rain') {
-                    message = 'There is a chance of rain.';
+                    message.textContent = 'There is a chance of rain.';
                 } else if (main === 'Snow') {
-                    message = 'There is a chance of snow.';
+                    message.textContent = 'There is a chance of snow.';
                 } else if (main === 'Thunderstorm') {
-                    message = 'There is a chance of thunderstorm.';
+                    message.textContent = 'There is a chance of thunderstorm.';
                 } else if (main === 'Windy') {
-                    message = 'It is windy.';
+                    message.textContent = 'It is windy.';
                 } else if (description === 'tornado') {
-                    message = 'There is a chance of tornado.';
+                    message.textContent = 'There is a chance of tornado.';
                 } else {
-                    message = `The weather is ${description}.`;
+                    message.textContent = `The weather is ${description}.`;
                 }
-                console.log(message);
+                console.log(message.textContent);
             })
             .catch(error => console.error(error));
         
