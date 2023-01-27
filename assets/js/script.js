@@ -22,6 +22,7 @@ let refreshButtonEl = document.getElementById('refresh-btn');
 let locationSubmitEl = document.getElementById('location-submit');
 let localInputEl = document.getElementById('loc-input');
 let localFormEl = document.getElementById('loc-form');
+let localWeatherEl = document.querySelector('.location-weather');
 
 findOutButtonEl.addEventListener('click', mindsetPage);
 
@@ -107,26 +108,27 @@ let city;
 
 function fetchWeather(event){
     event.preventDefault();
-console.log("This button is working ");
-city = localInputEl.value.trim();
-const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
-fetch(url)
+    console.log("This button is working ");
+    city = localInputEl.value.trim();
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+    fetch(url)
     .then(response => response.json())
     .then(data => {
         console.log(data);
+        localWeatherEl.classList.remove('hidden');
         const latitude = data.coord.lat;
         console.log(latitude);
         const longitude= data.coord.lon;
-        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
-        fetch(weatherUrl)
-            .then(response => response.json())
-            .then(data => {
-                const main = data.weather[0].main;
-                const description = data.weather[0].description;
+        const description = data.weather[0].description;
                 let location = document.querySelector('.current-location');
                 location.textContent = city;
                 let message = document.querySelector('.current-weather');
-                if (main === 'Clear') {
+                message.textContent = `Current Weather Condition: ${description}.`;
+
+        
+
+                /*if (main === 'Clear') {
+
                     message.textContent = 'The weather is clear.';
                 } else if (main === 'Rain') {
                     message.textContent = 'There is a chance of rain.';
@@ -141,16 +143,16 @@ fetch(url)
                 } else {
                     message.textContent = `The weather is ${description}.`;
                 }
-                console.log(message.textContent);
-            })
-            .catch(error => console.error(error));
+                console.log(message.textContent);*/
+          
         
 
-
+        
     })
     .catch(error => console.error(error));
-
+    localInputEl.value = "";
 }
+    
 
 
 
