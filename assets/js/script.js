@@ -90,24 +90,6 @@ function answerPage(event) {
     shouldIGoOut();
 };
 
-
-/*function arriveTimePage(event) {
-    event.preventDefault();     
-    destinationQuesEl.classList.add('hidden');
-    timeQuesEl.classList.remove('hidden');
-    titleEl.textContent = 'What time do you need to be there?';
-}
-
-arriveButtonEl.addEventListener('click', answerPage);
-
-function answerPage(event) {
-    event.preventDefault();        
-    timeQuesEl.classList.add('hidden');
-    answerEl.classList.remove('hidden');
-    titleEl.classList.replace('text-3xl', 'text-5xl');
-    titleEl.textContent = 'Should I go out?';
-}*/
-
 whyButtonEl.addEventListener('click', dataPage);
 
 function dataPage(event) {
@@ -117,6 +99,8 @@ function dataPage(event) {
     titleEl.classList.remove('text-center');
     titleEl.textContent = 'Data Analysis';
     titleEl.classList.replace('text-5xl', 'text-3xl');   
+
+    shouldIGoOut();
 }
 
 refreshButtonEl.addEventListener('click', function() {
@@ -133,7 +117,7 @@ function fetchWeather(event){
     event.preventDefault();
     console.log("This button is working ");    
 
-    city = localInputEl.value.trim();          
+    city = localInputEl.value.trim();     
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
     fetch(url)
@@ -239,17 +223,30 @@ function shouldIGoOut() {
     else{weather = "thumbsdown"};
     console.log(weather);
     let savedMiles = localStorage.getItem("miles");
-    if (savedMiles <= 45) {distance = "closeby"}
+    if (savedMiles <= 60) {distance = "closeby"}
     else {distance = "faraway"};
     console.log(distance);
 
-    if (weather == "thumbsup" || distance == "closeby") {document.getElementById('should').textContent = "YES, YOU SHOULD GO OUT!"}
+    if (weather == "thumbsup" && distance == "closeby") {document.getElementById('should').textContent = "YES, YOU SHOULD GO OUT!"}
     else {document.getElementById('should').textContent = "NO, YOU SHOULD NOT GO OUT"};
 
+    if (weather == "thumbsup" && distance == "closeby") {
+        dataTextEl.textContent = 
+        "The weather is good, and your destination is not too far away. Go out!"}
+    else if (weather == "thumbsup" && distance == "faraway") {
+        dataTextEl.textContent =
+        "The weather is good, but your destination is too far away. Stay in!"}
+    else if (weather == "thumbsdown" && distance == "closeby") {
+        dataTextEl.textContent =
+        "Your destination is close by, but the weather is bad. Stay in!"}    
+    else {
+        dataTextEl.textContent = 
+        "The weather is bad, and your destination is too far away. Stay in!"};           
+};
 
-    //console.log(value.innerHTML);
-    
-}
+
+
+
     
 
 
