@@ -118,7 +118,7 @@ function dataPage(event) {
 }
 
 refreshButtonEl.addEventListener('click', function() {
-    location.reload();
+    location.reload(); 
 });
 
 
@@ -137,11 +137,10 @@ function fetchWeather(event){
     fetch(url)
     .then(response => response.json())
         .then(data => {           
-            console.log(data);            
-            localWeatherEl.classList.remove('hidden');
-            const latitude = data.coord.lat;
+            console.log(data);           
+            const latitude = data.coord.lat;           
             console.log(latitude);
-            const longitude= data.coord.lon;
+            const longitude = data.coord.lon;
             console.log(longitude);
             const description = data.weather[0].description;
             let location = document.querySelector('.current-location');
@@ -149,11 +148,25 @@ function fetchWeather(event){
             let message = document.querySelector('.current-weather');
             message.textContent = `Current Weather Condition: ${description}.`;     
             fahrenheit = Math.round(((parseFloat(data.main.temp)-273.15)*1.8)+32); 
-            document.getElementById('current-temp').innerHTML = "Temp: " + fahrenheit + '\u00B0' + ' F';  
-            locErrorEl.innerHTML = "";             
+            document.getElementById('current-temp').innerHTML = "Temp: " + fahrenheit + '\u00B0' + ' F';              
+            locErrorEl.textContent = "";    
+            localWeatherEl.classList.remove('hidden');
+            localFormEl.classList.add('hidden');
+
+            let locationEntry = {
+                cityName: city,
+                lat: latitude,
+                lon: longitude,               
+                temp: data.main.temp,
+                condition: data.weather[0].main
+            };
+
+            localStorage.setItem("savedLocation", JSON.stringify(locationEntry));          
+            
         })   
-   .catch(error => localWeatherEl.classList.add('hidden'), locErrorEl.innerHTML = "Please enter a valid location");
+   .catch(error => localWeatherEl.classList.add('hidden'), localFormEl.classList.remove('hidden'), locErrorEl.textContent = "Please enter a valid location");
     localInputEl.value = "";   
+
 };
 
 destInputEl.addEventListener('submit', formSubmitCity)
@@ -163,23 +176,28 @@ function formSubmitCity (event) {
     console.log("Destination button is working");
     destination = destTextEl.value.trim();  
     console.log(destination);
-    
+    let savedEntry = JSON.parse(localStorage.getItem("savedLocation"));
+    console.log(savedEntry.cityName);
+    console.log(savedEntry.lat);
+    console.log(savedEntry.lon);
+    let longitudeLoc = savedEntry.lon;
+    let latitudeLoc = savedEntry.lat;   
+        
     let urlDest = `https://api.openweathermap.org/data/2.5/weather?q=${destination}&appid=${apiKey}`;
   
     fetch(urlDest)
-      .then(response => response.json())
+    .then(response => response.json())
         .then(data => {
-            console.log(data);
-            destRetrievedEl.classList.remove('hidden');          
-            const latitude = data.coord.lat;
-            console.log(latitude);          
-            const longitude= data.coord.lon;
-            console.log(longitude); 
+            console.log(data);           
+            let latitudeDest = data.coord.lat;
+            console.log(latitudeDest);          
+            let longitudeDest = data.coord.lon;
+            console.log(longitudeDest); 
             let destLocation = document.querySelector('.destination-location');
             destLocation.textContent = destination;
                 
-            let to = [longitude, latitude] 
-            let from = [longitude, latitude]  
+            let to = [longitudeDest, latitudeDest] 
+            let from = [longitudeLoc, latitudeLoc]  
 
             let options = {
                 units: 'miles'
@@ -189,10 +207,12 @@ function formSubmitCity (event) {
     
             let value = document.getElementById('map-overlay')
             value.innerHTML = "Distance to your destination: " + distance.toFixed([2]) + " miles";
-            destErrorEl.innerHTML = "";        
+            destErrorEl.textContent = "";        
+            destRetrievedEl.classList.remove('hidden'); 
+            destInputEl.classList.add('hidden'); 
         })
       
-    .catch(error => destRetrievedEl.classList.add('hidden'), destErrorEl.innerHTML = "Please enter a valid destination");
+    .catch(error => destRetrievedEl.classList.add('hidden'), destErrorEl.textContent = "Please enter a valid destination");
       
     destTextEl.value = ""; 
   
