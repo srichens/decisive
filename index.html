@@ -16,16 +16,13 @@
             <p id="tag-line" class="text-white text-xl font-bold italic py-2 mx-5">the app that decides for you</p>
     </header>
 
-    <main class="grid"> <!-- start out with all other sections visibility hidden-->
+    <main class="grid"> 
         <section id="landing-page" class="landing-page flex flex-col items-center bg-blue-300 pb-40 mx-5">
             <p class="border-blue-700 border-2 text-white text-6xl text-center bg-blue-900 w-full p-10 m-5">Should I go out?</p>
             <button id="find-out-btn" class="btn bg-orange-700 text-white text-3xl text-center font-bold w-48 py-2 m-5">FIND OUT</button>
         </section>
-<!-- add id and hidden class to parent element and add id to first element of each child section-->
 
     <section id="question-mindset" class="hidden grid grid-cols-2 gap-2 place-content-evenly question-mindset border-black border-4 bg-neutral-100 m-5 relative">
-        <!-- <h1>Which best describes your current mindset?</h1> -->
-        <!-- Implemented inline tailwind style changes to current mindset -->
         <section id="insecure" class="relative mindset-block border-2 m-5 shadow-xl shadow-purple-500/70">
             <h2 id="ins-head" class="absolute inset-x-0 top-0 m-5 text-center text-3xl -mt-4 bg-gradient-to-tl from-purple-200 via-purple-400 to-purple-800 text-white">Insecure</h2>
             <p id="ins-para" class="m-2 p-4 text-center">I want to go out, but maybe I shouldn't</p>
@@ -47,93 +44,59 @@
         </section>
         </section>
 
-<!-- add hidden class and ID to parent element and ID to button-->
-        <section id="location-question" class="hidden location-question border-black border-dotted border-4 bg-neutral-200 m-5">
-            <!-- <h1>What is your current location?</h1> -->
+        <section id="location-question" class="hidden location-question border-black border-dotted border-4 bg-neutral-200 m-5">   
             <form id="loc-form" class="border-blue-700 border-2 m-5">
                 <p>
-                    <input  id="loc-input" class="border-pink-700 border-2 m-5" type="text" placeholder="e.g. 123 Main Street, Minneapolis, MN">
+                    <input  id="loc-input" class="border-pink-700 border-2 m-5" type="text" placeholder="e.g. Minneapolis">
+                    <p id="eml" class="m-5"></p>
                 </p>
                 <p>
                     <button id="location-submit" class="border-pink-700 border-2 bg-orange-700 text-white font-bold m-5" type="submit">Submit</button>
                 </p>
-            </form>
-            <!-- add rendered data block that will initially be hidden-->
+            </form>         
             <section class= "hidden location-weather bg-white border-black border-dotted border-2 m-5">
-                <h2 class="current-location bg-blue-200">[location here]</h2>
-                <p class="current-weather border-pink-700 border-2 m-5">The current weather is [condition] and [temperature]</p>
+                <h2 class="current-location bg-blue-200"></h2>
+                <p class="current-weather border-pink-700 border-2 m-5"></p>
+                <p id="current-temp" class="border-pink-700 border-2 m-5"></p>
                 <p>
                     <button id="location-next" class="bg-blue-900 text-white font-bold m-5" type="submit">Next</button>
                 </p>
             </section>
         </section>
-<!-- add hidden class and ID to parent element and ID to button-->
-        <section id="destination-question" class="hidden destination-question border-black border-4 bg-neutral-200 m-5">
-            <!-- <h1>Where are you planning on going/supposed to go?</h1> -->  
-            <!-- <section id="map"></section>           
-            <section id="map-overlay" class="border-black text-blue-900"></section>  -->     
+
+        <section id="destination-question" class="hidden destination-question border-black border-4 bg-neutral-200 m-5">            
             <form id="dest-input" class="border-blue-700 border-2 m-5">
                 <p>
-                    <input id="dest-text" class="border-pink-700 border-2 m-5" type="text" placeholder="e.g. The Best Restaurant, Minneapolis, MN">
+                    <input id="dest-text" class="border-pink-700 border-2 m-5" type="text" placeholder="e.g. St. Paul">
+                    <p id="emd" class="m-5"></p>
                 </p>
                 <p>
                     <button id="destination-submit" class="border-pink-700 border-2 bg-orange-700 text-white font-bold m-5" type="submit">Submit</button>
                 </p>
             </form>
             <section id="destination-retrieved" class="hidden destination bg-white border-black border-dotted border-2 m-5">
-                <h2 id="map" class="destination-location mt-50 bg-blue-200">[retrieved destination here]</h2>
-                <p id="map-overlay" class="distance border-pink-700 border-2 m-5">Your destination is a [retrieved distance and/or drive time] from your current location.</p>
+                <h2 id="map" class="destination-location mt-50 bg-blue-200"></h2>
+                <p id="map-overlay" class="distance border-pink-700 border-2 m-5"></p>
                 <p>
                     <button id="destination-next" class="btn bg-blue-900 text-white font-bold m-5" type="submit">Next</button>
                 </p>
             </section>
         </section>      
-<!-- add hidden class and ID to parent element and ID to button-->
-        <section id="time-question" class="hidden time-question border-black border-dotted border-4 bg-neutral-200 m-5">
-            <!-- <h1>What time do you need to be there?</h1> -->
-            <form class="border-blue-700 border-2 m-5">
-                <p>
-                    <input class="border-pink-700 border-2 m-5" type="text" placeholder="e.g. 5 pm">
-                </p>
-                <p>
-                    <button id="arrive-btn" class="border-pink-700 border-2 bg-orange-700 text-white font-bold m-5" type="submit">Submit</button>
-                </p>
-            </form>
-        </section>
-<!-- add hidden class and ID to parent element and ID to button-->
-        <section id="answer" class="hidden answer border-black border-4 bg-blue-300 m-5">
-            <!-- <h1>Should I go out?</h1> -->
-            <p class="border-blue-700 border-2 m-5">NO, YOU SHOULD NOT GO OUT</p>
-            <!--add this text-->
-            <p>[If weather is good and you have enough time to get there, you should go out]</p>
-            <p>[Otherwise, you should NOT go out]</p>
+
+        <section id="answer" class="hidden answer border-black border-4 bg-blue-300 m-5">      
+            <p id="should" class="border-blue-700 border-2 m-5"></p>           
             <button id="why-btn" class="border-blue-700 border-2 bg-orange-700 text-white font-bold m-5">FIND OUT WHY</button>
         </section>
-<!-- add hidden class and ID to parent element and first paragraph-->
-        <section id="data-analysis" class="hidden data-analysis border-black border-dotted border-4 bg-neutral-200 m-5">
-            <!-- <h1>Data Analysis</h1> -->
-            <p id="data-text" class="analysis-para border-pink-700 border-2 bg-white m-5">
-                Even though the weather is good, you should not go out because your 
-                destination is six hours away and you need to be there is two hours. 
-            </p>
-            <!-- add refresh button and data collection text-->
-            <p>Weather: [good or bad]</p>
-            <p>Destination is how far away: [miles]</p>
-            <p>How long will it take to get there by car: []</p>
-            <p>How much time do you have to get there: []</p>            
-            
+
+        <section id="data-analysis" class="hidden data-analysis border-black border-dotted border-4 bg-neutral-200 m-5">      
+            <p id="data-text" class="border-pink-700 border-2 m-5"> </p>              
             <p>
                 <button id="refresh-btn" class="border-pink-700 border-2 bg-orange-700 text-white font-bold m-5" type="submit">It's Decided!</button>
             </p>
         </section>
     </main>
-    <!-- added dayjs and jquery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     
-    <script 
-    src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>    
 
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js'></script>
     <script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
