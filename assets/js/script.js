@@ -78,15 +78,17 @@ function destinationPage(event) {
     titleEl.textContent = 'Where are you planning on going/supposed to go?';
 }
 
-destinationNextEl.addEventListener('click', arriveTimePage);
+destinationNextEl.addEventListener('click', answerPage);
 
-function arriveTimePage(event) {
+function answerPage(event) {
     event.preventDefault();     
     destinationQuesEl.classList.add('hidden');
     answerEl.classList.remove('hidden');
     titleEl.classList.replace('text-3xl', 'text-5xl');
     titleEl.textContent = 'Should I go out?';
-}
+
+    shouldIGoOut();
+};
 
 
 /*function arriveTimePage(event) {
@@ -203,10 +205,13 @@ function formSubmitCity (event) {
                 units: 'miles'
             };  
 
-            let distance = turf.distance(to, from, options);
-    
+            let distance = turf.distance(to, from, options);    
             let value = document.getElementById('map-overlay')
+            let miles = distance.toFixed([2]);
+            console.log(miles);
+            localStorage.setItem("miles", miles);
             value.innerHTML = "Distance to your destination: " + distance.toFixed([2]) + " miles";
+            
             destErrorEl.textContent = "";        
             destRetrievedEl.classList.remove('hidden'); 
             destInputEl.classList.add('hidden'); 
@@ -218,6 +223,33 @@ function formSubmitCity (event) {
   
 };
 
+function shouldIGoOut() {
+    let condition;
+    let temperature;
+    let weather;
+    let distance;
+    let savedWeather = JSON.parse(localStorage.getItem("savedLocation"));
+    if(savedWeather.condition == "Clouds" || savedWeather.condition == "Clear") {condition = "good"}
+    else {condition = "bad"};
+    if(savedWeather.temp <= 295 || savedWeather.temp >= 320) {temperature = "bad"}
+    else (temperature = "good");
+    console.log(condition);
+    console.log(temperature);
+    if(condition == "good" && temperature == "good") {weather = "thumbsup"}
+    else{weather = "thumbsdown"};
+    console.log(weather);
+    let savedMiles = localStorage.getItem("miles");
+    if (savedMiles <= 45) {distance = "closeby"}
+    else {distance = "faraway"};
+    console.log(distance);
+
+    if (weather == "thumbsup" || distance == "closeby") {document.getElementById('should').textContent = "YES, YOU SHOULD GO OUT!"}
+    else {document.getElementById('should').textContent = "NO, YOU SHOULD NOT GO OUT"};
+
+
+    //console.log(value.innerHTML);
+    
+}
     
 
 
