@@ -114,20 +114,16 @@ const apiKey = '2b53fe9e9a97281c32a772fc33b1d0b7';
 let city;
 
 function fetchWeather(event){
-    event.preventDefault();
-    console.log("This button is working ");    
+    event.preventDefault();    
 
     city = localInputEl.value.trim();     
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
     fetch(url)
     .then(response => response.json())
-        .then(data => {           
-            console.log(data);           
-            const latitude = data.coord.lat;           
-            console.log(latitude);
+        .then(data => {                                
+            const latitude = data.coord.lat;         
             const longitude = data.coord.lon;
-            console.log(longitude);
             const description = data.weather[0].description;
             let location = document.querySelector('.current-location');
             location.textContent = city;
@@ -158,14 +154,10 @@ function fetchWeather(event){
 destInputEl.addEventListener('submit', formSubmitCity)
   
 function formSubmitCity (event) {
-    event.preventDefault();
-    console.log("Destination button is working");
-    destination = destTextEl.value.trim();  
-    console.log(destination);
-    let savedEntry = JSON.parse(localStorage.getItem("savedLocation"));
-    console.log(savedEntry.cityName);
-    console.log(savedEntry.lat);
-    console.log(savedEntry.lon);
+    event.preventDefault();   
+    destination = destTextEl.value.trim();     
+    localStorage.setItem("savedDestination", destination);
+    let savedEntry = JSON.parse(localStorage.getItem("savedLocation"));   
     let longitudeLoc = savedEntry.lon;
     let latitudeLoc = savedEntry.lat;   
         
@@ -173,12 +165,9 @@ function formSubmitCity (event) {
   
     fetch(urlDest)
     .then(response => response.json())
-        .then(data => {
-            console.log(data);           
-            let latitudeDest = data.coord.lat;
-            console.log(latitudeDest);          
-            let longitudeDest = data.coord.lon;
-            console.log(longitudeDest); 
+        .then(data => {                     
+            let latitudeDest = data.coord.lat;                    
+            let longitudeDest = data.coord.lon;           
             let destLocation = document.querySelector('.destination-location');
             destLocation.textContent = destination;
                 
@@ -191,8 +180,7 @@ function formSubmitCity (event) {
 
             let distance = turf.distance(to, from, options);    
             let value = document.getElementById('map-overlay')
-            let miles = distance.toFixed([2]);
-            console.log(miles);
+            let miles = distance.toFixed([2]);            
             localStorage.setItem("miles", miles);
             value.innerHTML = "Distance to your destination: " + distance.toFixed([2]) + " miles";
             
@@ -215,17 +203,13 @@ function shouldIGoOut() {
     let savedWeather = JSON.parse(localStorage.getItem("savedLocation"));
     if(savedWeather.condition == "Clouds" || savedWeather.condition == "Clear") {condition = "good"}
     else {condition = "bad"};
-    if(savedWeather.temp <= 295 || savedWeather.temp >= 320) {temperature = "bad"}
-    else (temperature = "good");
-    console.log(condition);
-    console.log(temperature);
+    if(savedWeather.temp <= 275 || savedWeather.temp >= 300) {temperature = "bad"}
+    else (temperature = "good");   
     if(condition == "good" && temperature == "good") {weather = "thumbsup"}
-    else{weather = "thumbsdown"};
-    console.log(weather);
+    else{weather = "thumbsdown"};   
     let savedMiles = localStorage.getItem("miles");
     if (savedMiles <= 60) {distance = "closeby"}
-    else {distance = "faraway"};
-    console.log(distance);
+    else {distance = "faraway"};   
 
     if (weather == "thumbsup" && distance == "closeby") {document.getElementById('should').textContent = "YES, YOU SHOULD GO OUT!"}
     else {document.getElementById('should').textContent = "NO, YOU SHOULD NOT GO OUT"};
@@ -244,7 +228,17 @@ function shouldIGoOut() {
         "The weather is bad, and your destination is too far away. Stay in!"};           
 };
 
+let recentLocEl = document.getElementById('recent-loc');
+let savedSearch = JSON.parse(localStorage.getItem("savedLocation"));
 
+let savedCity = savedSearch.cityName;
+
+recentLocEl.textContent = "Your most recent location: " + savedCity
+
+let recentDestEl = document.getElementById('recent-dest');
+let savedDest = localStorage.getItem("savedDestination");
+
+recentDestEl.textContent = "Your most recent destination: " + savedDest;
 
 
     
