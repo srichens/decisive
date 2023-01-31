@@ -19,79 +19,81 @@
     <main class="grid"> 
         <section id="landing-page" class="landing-page flex flex-col items-center bg-blue-300 pb-40 mx-5">
             <p class="border-blue-700 border-2 text-white text-6xl text-center bg-blue-900 w-full p-10 m-5">Should I go out?</p>
-            <button id="find-out-btn" class="btn bg-orange-700 text-white text-3xl text-center font-bold w-48 py-2 m-5">FIND OUT</button>
+            <button id="find-out-btn" class="btn bg-orange-500 text-white text-3xl text-center font-bold w-48 py-2 m-5">FIND OUT</button>
         </section>
 
-    <section id="question-mindset" class="hidden grid grid-cols-2 gap-2 place-content-evenly question-mindset border-black border-4 bg-neutral-100 m-5 relative">
-        <section id="insecure" class="relative mindset-block border-2 m-5 shadow-xl shadow-purple-500/70">
+    <section id="question-mindset" class="hidden grid grid-cols-2 gap-2 place-content-evenly question-mindset m-5 relative">
+        <section id="insecure" class="relative mindset-block border-2 m-10 bg-white shadow-xl shadow-purple-500/70 cursor-pointer">
             <h2 id="ins-head" class="absolute inset-x-0 top-0 m-5 text-center text-3xl -mt-4 bg-gradient-to-tl from-purple-200 via-purple-400 to-purple-800 text-white">Insecure</h2>
-            <p id="ins-para" class="m-2 p-4 text-center">I want to go out, but maybe I shouldn't</p>
+            <p id="ins-para" class="m-2 p-4 text-center text-lg">I want to go out, but maybe I shouldn't</p>
         </section>
 
-        <section id="guilt" class="relative mindset-block border-2 m-5 shadow-xl shadow-rose-500/70">
+        <section id="guilt" class="relative mindset-block border-2 m-10 bg-white shadow-xl shadow-rose-500/70 cursor-pointer">
             <h2 id="guilt-head" class="absolute inset-x-0 top-0 m-5 text-center text-3xl -mt-4 bg-gradient-to-tl from-rose-200 via-rose-400 to-rose-800 text-white">On a guilt trip</h2>
-            <p id="guilt-para" class="m-2 p-4 text-center">I don't want to go out, but maybe I should</p>
+            <p id="guilt-para" class="m-2 p-4 text-center text-lg">I don't want to go out, but maybe I should</p>
         </section>
 
-        <section id="defiant" class="relative mindset-block border-2 m-5 shadow-xl shadow-teal-500/70">
+        <section id="defiant" class="relative mindset-block border-2 m-10 bg-white shadow-xl shadow-teal-500/70 cursor-pointer">
             <h2 id="def-head" class="absolute inset-x-0 top-0 m-5 text-center text-3xl -mt-4 bg-gradient-to-tl from-teal-200 via-teal-400 to-teal-500 text-white">Defiant</h2>
-            <p id="def-para" class="m-2 p-4 text-center">I SHOULD go out - prove me wrong</p>
+            <p id="def-para" class="m-2 p-4 text-center text-lg">I SHOULD go out - prove me wrong</p>
         </section>
 
-        <section id="introverted" class="relative mindset-block border-2 m-5 shadow-xl shadow-blue-500/70">
+        <section id="introverted" class="relative mindset-block border-2 m-10 bg-white shadow-xl shadow-blue-500/70 cursor-pointer">
             <h2 id="intr-head" class="absolute inset-x-0 top-0 m-5 text-center text-3xl -mt-4 bg-gradient-to-tl from-blue-200 via-blue-400 to-blue-500 text-white">Introverted</h2>
-            <p id="intr-para" class="m-2 p-4 text-center">I don't want to go out</p>
+            <p id="intr-para" class="m-2 p-4 text-center text-lg">I don't want to go out</p>
         </section>
         </section>
 
-        <section id="location-question" class="hidden location-question border-black border-dotted border-4 bg-neutral-200 m-5">   
-            <form id="loc-form" class="border-blue-700 border-2 m-5">
+        <!-- hidden -->
+        <section id="location-question" class="hidden location-question bg-neutral-200 m-5 shadow-2xl shadow-stone-800/80 rounded-md border-blue-800 border-2">
+            <form id="loc-form" class="border-blue-700 m-5">
                 <p>
-                    <input  id="loc-input" class="border-pink-700 border-2 m-5" type="text" placeholder="e.g. Minneapolis">
+                    <input  id="loc-input" class="border-2 border-blue-800 m-5 p-2" type="text" placeholder="e.g. Minneapolis">
                     <p id="eml" class="m-5"></p>
                 </p>
                 <p>
-                    <button id="location-submit" class="border-pink-700 border-2 bg-orange-700 text-white font-bold m-5" type="submit">Submit</button>
+                    <button id="location-submit" class="rounded-md p-2 bg-white border-blue-800 border-2 text-black font-bold m-5 hover:text-white hover:bg-blue-800 hover:text-xl" type="submit">Submit</button>
                 </p>
-            </form>         
-            <section class= "hidden location-weather bg-white border-black border-dotted border-2 m-5">
-                <h2 class="current-location bg-blue-200"></h2>
-                <p class="current-weather border-pink-700 border-2 m-5"></p>
-                <p id="current-temp" class="border-pink-700 border-2 m-5"></p>
+            </form> 
+            <!-- hidden -->
+            <section class= "hidden location-weather bg-white m-5">
+                <h2 class="current-location bg-blue-200 text-center font-medium text-2xl py-2"></h2>
+                <p class="current-weather m-5 text-lg"></p>
+                <p id="current-temp" class="m-5 text-lg"></p>
                 <p>
-                    <button id="location-next" class="bg-blue-900 text-white font-bold m-5" type="submit">Next</button>
+                    <button id="location-next" class="rounded-md p-2 bg-white border-blue-800 border-2 text-black font-bold m-5 hover:text-white hover:bg-blue-800 hover:text-xl" type="submit">Next</button>
                 </p>
             </section>
         </section>
 
-        <section id="destination-question" class="hidden destination-question border-black border-4 bg-neutral-200 m-5">            
-            <form id="dest-input" class="border-blue-700 border-2 m-5">
+        <section id="destination-question" class="hidden destination-question bg-neutral-200 m-5 shadow-2xl shadow-stone-800/80 rounded-md border-blue-800 border-2">            
+            <form id="dest-input" class="m-5">
                 <p>
-                    <input id="dest-text" class="border-pink-700 border-2 m-5" type="text" placeholder="e.g. St. Paul">
+                    <input id="dest-text" class="border-2 border-blue-800 m-5 p-2" type="text" placeholder="e.g. St. Paul">
                     <p id="emd" class="m-5"></p>
                 </p>
                 <p>
-                    <button id="destination-submit" class="border-pink-700 border-2 bg-orange-700 text-white font-bold m-5" type="submit">Submit</button>
+                    <button id="destination-submit" class="rounded-md p-2 bg-white border-blue-800 border-2 text-black font-bold m-5 hover:text-white hover:bg-blue-800 hover:text-xl" type="submit">Submit</button>
                 </p>
             </form>
-            <section id="destination-retrieved" class="hidden destination bg-white border-black border-dotted border-2 m-5">
-                <h2 id="map" class="destination-location mt-50 bg-blue-200"></h2>
-                <p id="map-overlay" class="distance border-pink-700 border-2 m-5"></p>
+            <section id="destination-retrieved" class="hidden destination bg-white m-5">
+                <h2 id="map" class="destination-location bg-blue-200 text-center font-medium text-2xl"></h2>
+                <p id="map-overlay" class="distance m-5 text-lg"></p>
                 <p>
-                    <button id="destination-next" class="btn bg-blue-900 text-white font-bold m-5" type="submit">Next</button>
+                    <button id="destination-next" class="rounded-md p-2 bg-white border-blue-800 border-2 text-black font-bold m-5 hover:text-white hover:bg-blue-800 hover:text-xl" type="submit">Next</button>
                 </p>
             </section>
         </section>      
 
-        <section id="answer" class="hidden answer border-black border-4 bg-blue-300 m-5">      
-            <p id="should" class="border-blue-700 border-2 m-5"></p>           
-            <button id="why-btn" class="border-blue-700 border-2 bg-orange-700 text-white font-bold m-5">FIND OUT WHY</button>
+        <section id="answer" class="hidden answer m-5 bg-neutral-200 m-5 shadow-2xl shadow-stone-800/80 rounded-md border-blue-800 border-2 flex flex-col items-center">      
+            <p id="should" class="m-5 text-2xl text-center"></p>           
+            <button id="why-btn" class="rounded-md p-2 bg-white border-blue-800 border-2 text-black font-bold m-5 hover:text-white hover:bg-blue-800 hover:text-xl">FIND OUT WHY</button>
         </section>
 
-        <section id="data-analysis" class="hidden data-analysis border-black border-dotted border-4 bg-neutral-200 m-5">      
-            <p id="data-text" class="border-pink-700 border-2 m-5"> </p>              
+        <section id="data-analysis" class="hidden data-analysis bg-neutral-200 m-5 shadow-2xl shadow-stone-800/80 rounded-md border-blue-800 border-2 flex flex-col items-center">
+            <p id="data-text" class="m-5 text-2xl"> </p>        
             <p>
-                <button id="refresh-btn" class="border-pink-700 border-2 bg-orange-700 text-white font-bold m-5" type="submit">It's Decided!</button>
+                <button id="refresh-btn" class="rounded-md p-2 bg-white border-orange-500 border-2 text-black font-bold m-5 hover:text-white hover:bg-orange-500 hover:text-xl" type="submit">It's Decided!</button>
             </p>
         </section>
     </main>
