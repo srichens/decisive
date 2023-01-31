@@ -1,40 +1,39 @@
+//header elements
 let headerEl = document.getElementById("page-header");
 let titleEl = document.getElementById("page-title");
 let tagEl = document.getElementById("tag-line");
+//landing page elements
 let landingPageEl = document.getElementById("landing-page");
 let findOutButtonEl = document.getElementById("find-out-btn");
+//What is your current mindset? page elements
 let mindsetEl = document.querySelector(".question-mindset");
 let insecureEl = document.getElementById("insecure");
 let guiltEl = document.getElementById("guilt");
 let defiantEl = document.getElementById("defiant");
 let introvertedEl = document.getElementById("introverted");
+//What is your location? page elements
 let locationQuesEl = document.getElementById("location-question");
+let localFormEl = document.getElementById("loc-form");
+let localInputEl = document.getElementById("loc-input");
+let locErrorEl = document.getElementById("eml");
+let localWeatherEl = document.querySelector(".location-weather");
 let locationNextEl = document.getElementById("location-next");
+//Where are you going? page elements
 let destinationQuesEl = document.getElementById("destination-question");
+let destInputEl = document.getElementById("dest-input");
+let destTextEl = document.getElementById("dest-text");
+let destErrorEl = document.getElementById("emd");
+let destRetrievedEl = document.getElementById("destination-retrieved");
 let destinationNextEl = document.getElementById("destination-next");
-let timeQuesEl = document.getElementById("time-question");
-let arriveButtonEl = document.getElementById("arrive-btn");
+//Should I go out? answer page elements
 let answerEl = document.getElementById("answer");
 let whyButtonEl = document.getElementById("why-btn");
+//Data analysis page elementds
 let dataAnalysisEl = document.getElementById("data-analysis");
 let dataTextEl = document.getElementById("data-text");
 let refreshButtonEl = document.getElementById("refresh-btn");
-let locationSubmitEl = document.getElementById("location-submit");
-let localInputEl = document.getElementById("loc-input");
-let localFormEl = document.getElementById("loc-form");
-let localWeatherEl = document.querySelector(".location-weather");
-let locErrorEl = document.getElementById("eml");
-let destErrorEl = document.getElementById("emd");
-let destRenderEl = document.querySelector(".destination");
 
-let destination;
-let destRetrievedEl = document.getElementById("destination-retrieved");
-let destInputEl = document.getElementById("dest-input");
-let destTextEl = document.getElementById("dest-text");
-
-mapboxgl.accessToken =
-  "pk.eyJ1Ijoic2dyaWNoZW5zIiwiYSI6ImNsZGNlZXUyazA5YjUzcHA2ejhuaTBld3YifQ.dtar1LhXriGs-PkHHHq5yg";
-
+//Lines 37 through 108 are the functions that move each page to the next
 findOutButtonEl.addEventListener("click", mindsetPage);
 
 function mindsetPage(event) {
@@ -108,6 +107,8 @@ refreshButtonEl.addEventListener("click", function () {
   location.reload();
 });
 
+//Fetches local weather after city input by user
+//saves data to local storage
 localFormEl.addEventListener("submit", fetchWeather);
 
 const apiKey = "2b53fe9e9a97281c32a772fc33b1d0b7";
@@ -128,7 +129,7 @@ function fetchWeather(event) {
       let location = document.querySelector(".current-location");
       location.textContent = city;
       let message = document.querySelector(".current-weather");
-      message.textContent = `Current Weather Condition: ${description}.`;
+      message.textContent = `Current Weather Condition: ${description}`;
       fahrenheit = Math.round((parseFloat(data.main.temp) - 273.15) * 1.8 + 32);
       document.getElementById("current-temp").innerHTML =
         "Temp: " + fahrenheit + "\u00B0" + " F";
@@ -147,14 +148,24 @@ function fetchWeather(event) {
       localStorage.setItem("savedLocation", JSON.stringify(locationEntry));
     })
     .catch(
-      (error) => localWeatherEl.classList.add("hidden"),
-      localFormEl.classList.remove("hidden"),
-      (locErrorEl.textContent = "Please enter a valid location")
+      (error) => {
+        localWeatherEl.classList.add("hidden");
+        localFormEl.classList.remove("hidden");
+        locErrorEl.textContent = "Please enter a valid location";
+      }
     );
+
   localInputEl.value = "";
 }
 
+//Uses weather API to get lat and lon for destination
+//Retrieves current location lat and lon from local storage
+//Uses map API to get miles between location and destination
 destInputEl.addEventListener("submit", formSubmitCity);
+
+mapboxgl.accessToken =
+  "pk.eyJ1Ijoic2dyaWNoZW5zIiwiYSI6ImNsZGNlZXUyazA5YjUzcHA2ejhuaTBld3YifQ.dtar1LhXriGs-PkHHHq5yg";
+let destination;
 
 function formSubmitCity(event) {
   event.preventDefault();
@@ -194,13 +205,17 @@ function formSubmitCity(event) {
     })
 
     .catch(
-      (error) => destRetrievedEl.classList.add("hidden"),
-      (destErrorEl.textContent = "Please enter a valid destination")
+      (error) => {
+        destRetrievedEl.classList.add("hidden");
+        destInputEl.classList.remove("hidden"); 
+        destErrorEl.textContent = "Please enter a valid destination";
+      }
     );
 
   destTextEl.value = "";
 }
 
+//Retrieves data entered and outputs answer based on if statments
 function shouldIGoOut() {
   let condition;
   let temperature;
@@ -248,6 +263,7 @@ function shouldIGoOut() {
   }
 }
 
+//Saves most recent lcoation and destination from local storage so the data persist and page refresh
 let recentLocEl = document.getElementById("recent-loc");
 let savedSearch = JSON.parse(localStorage.getItem("savedLocation"));
 
