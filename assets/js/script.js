@@ -147,10 +147,13 @@ function fetchWeather(event) {
       localStorage.setItem("savedLocation", JSON.stringify(locationEntry));
     })
     .catch(
-      (error) => localWeatherEl.classList.add("hidden"),
-      localFormEl.classList.remove("hidden"),
-      (locErrorEl.textContent = "Please enter a valid location")
+      (error) => {
+        localWeatherEl.classList.add("hidden");
+        localFormEl.classList.remove("hidden");
+        locErrorEl.textContent = "Please enter a valid location";
+      }
     );
+    
   localInputEl.value = "";
 }
 
@@ -194,8 +197,11 @@ function formSubmitCity(event) {
     })
 
     .catch(
-      (error) => destRetrievedEl.classList.add("hidden"),
-      (destErrorEl.textContent = "Please enter a valid destination")
+      (error) => {
+        destRetrievedEl.classList.add("hidden");
+        destInputEl.classList.remove("hidden"); 
+        destErrorEl.textContent = "Please enter a valid destination";
+      }
     );
 
   destTextEl.value = "";
