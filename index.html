@@ -5,22 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css' rel='stylesheet' />   
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Decisive</title>
 </head>
 
 <body>
+    <!-- Title Page -->
     <header id="page-header" class="bg-blue-300 py-4 mx-5">
         <h1 id="page-title" class="text-blue-900 text-5xl font-bold italic py-2 mx-5">Decisive</h1>
             <p id="tag-line" class="text-white text-xl font-bold italic py-2 mx-5">the app that decides for you</p>
     </header>
 
+    <!-- Landing page start -->
     <main class="grid"> 
         <section id="landing-page" class="landing-page flex flex-col items-center bg-blue-300 pb-40 mx-5">
             <p class="border-blue-700 border-2 text-white text-6xl text-center bg-blue-900 w-full p-10 m-5">Should I go out?</p>
             <button id="find-out-btn" class="btn rounded-md bg-white border-orange-500 border-2 text-black font-bold m-5 hover:text-white hover:bg-orange-500 hover:text-xl w-48 py-2 m-5">FIND OUT</button>
         </section>
 
+    <!-- Mindset decision page -->
     <section id="question-mindset" class="hidden grid grid-cols-2 gap-2 place-content-evenly question-mindset m-5 relative">
         <section id="insecure" class="relative mindset-block border-2 m-10 bg-white shadow-xl shadow-purple-500/70 cursor-pointer">
             <h2 id="ins-head" class="absolute inset-x-0 top-0 m-5 text-center text-3xl -mt-4 bg-gradient-to-tl from-purple-200 via-purple-400 to-purple-800 text-white">Insecure</h2>
@@ -41,8 +45,9 @@
             <h2 id="intr-head" class="absolute inset-x-0 top-0 m-5 text-center text-3xl -mt-4 bg-gradient-to-tl from-blue-200 via-blue-400 to-blue-500 text-white">Introverted</h2>
             <p id="intr-para" class="m-2 p-4 text-center text-lg">I don't want to go out</p>
         </section>
-        </section>
+    </section>
         
+        <!-- Initial location page -->
         <section id="location-question" class="hidden location-question bg-neutral-200 m-5 shadow-2xl shadow-stone-800/80 rounded-md border-blue-800 border-2">
             <form id="loc-form" class="border-blue-700 m-5">
                 <p>
@@ -55,6 +60,7 @@
                 </p>
             </form> 
             
+            <!-- Weather for current location -->
             <section class= "hidden location-weather bg-white m-5">
                 <h2 class="current-location bg-blue-200 text-center font-medium text-2xl py-2"></h2>
                 <p class="current-weather m-5 text-lg"></p>
@@ -65,6 +71,7 @@
             </section>
         </section>
 
+        <!-- Desired location/destination page -->
         <section id="destination-question" class="hidden destination-question bg-neutral-200 m-5 shadow-2xl shadow-stone-800/80 rounded-md border-blue-800 border-2">            
             <form id="dest-input" class="m-5">
                 <p>
@@ -76,6 +83,7 @@
                     <button id="destination-submit" class="rounded-md p-2 bg-white border-blue-800 border-2 text-black font-bold m-5 hover:text-white hover:bg-blue-800 hover:text-xl" type="submit">Submit</button>
                 </p>
             </form>
+            <!-- Distance for destination -->
             <section id="destination-retrieved" class="hidden destination bg-white m-5">
                 <h2 id="map" class="destination-location bg-blue-200 text-center font-medium text-2xl"></h2>
                 <p id="map-overlay" class="distance m-5 text-lg"></p>
@@ -85,11 +93,13 @@
             </section>
         </section>      
 
+        <!-- Answer page -->
         <section id="answer" class="hidden answer m-5 bg-neutral-200 m-5 shadow-2xl shadow-stone-800/80 rounded-md border-blue-800 border-2 flex flex-col items-center">      
             <p id="should" class="m-5 text-2xl text-center"></p>           
             <button id="why-btn" class="rounded-md p-2 bg-white border-blue-800 border-2 text-black font-bold m-5 hover:text-white hover:bg-blue-800 hover:text-xl">FIND OUT WHY</button>
         </section>
 
+        <!-- End/return page -->
         <section id="data-analysis" class="hidden data-analysis bg-neutral-200 m-5 shadow-2xl shadow-stone-800/80 rounded-md border-blue-800 border-2 flex flex-col items-center">
             <p id="data-text" class="m-5 text-2xl"> </p>        
             <p>
@@ -98,6 +108,7 @@
         </section>
     </main>
     
+    <!-- Script and API -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>    
 
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js'></script>
